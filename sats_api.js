@@ -51,7 +51,7 @@ load(requestURL, function(xhr) {
   var output = document.getElementById('output');
   output.innerHTML = '<h2>Here are the list of Satallite names</h2>'
   for (var i = 0; i < json.info.satcount; i++) {
-    output.innerHTML += '<li>'+json.above[i].satname+json.above[i].launchDate+'</li>'
+    output.innerHTML += '<li>'+json.above[i].satname+'</li>'
     }
   });
 }
