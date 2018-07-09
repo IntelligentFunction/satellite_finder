@@ -37,22 +37,28 @@ function getSats() {
   var json = JSON.parse(data);
   console.log(data);
 
-  alert("There are currently "+json.info.satcount+" Satellites above pin location \nwithin a 10 degree range. \nClick ok and scroll down to see Satallite list.")
-  // Create a list out of Satallite names to appear below button
-  var output = document.getElementById('sats');
-  output.innerHTML = '<h2>Here are the list of Satallite names</h2>'+'<div>' +  '<ol>'
-  for (var i = 0; i < json.info.satcount; i++) {
-    output.innerHTML +=
-    '<li>' +
-    '<ul>' +
-    '<li>Sat ID: '+json.above[i].satid+'</li>' +
-    '<li>Sat Name: '+json.above[i].satname+'</li>' +
-    '<li>Sat LaunchDate '+json.above[i].launchDate+'</li>' +
-    '</ul>' +
-    '<br>' +
-    '</li>' +
-    '</ol>'
+  if (!json.info.satcount) {
+    alert("There are no satellites above the current map location.")
+  } else {
+      alert("There are currently "+json.info.satcount+" Satellites above pin location \nwithin a 10 degree range. \nClick ok and scroll down to see Satallite list.")
+      // Create a list out of Satallite names to appear below button
+      output = document.getElementById('sats');
+      output.innerHTML = '<h2>Here are the list of Satallite names</h2>'+'<div>' +  '<ol>'
+      for (var i = 0; i < json.info.satcount; i++) {
+        output.innerHTML +=
+        '<li>' +
+        '<ul>' +
+        '<li>Sat ID: '+json.above[i].satid+'</li>' +
+        '<li>Sat Name: '+json.above[i].satname+'</li>' +
+        '<li>Sat LaunchDate '+json.above[i].launchDate+'</li>' +
+        '<li>Sat Latitude '+json.above[i].satlat+'</li>' +
+        '<li>Sat Longitude '+json.above[i].satlng+'</li>' +
+        '</ul>' +
+        '<br>' +
+        '</li>' +
+        '</ol>'
+      }
+      '</div>'
     }
-    '</div>'
   });
 }

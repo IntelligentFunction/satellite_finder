@@ -3,6 +3,7 @@ var marker = null;
 var userLat = null;
 var userLng = null;
 var requestURL;
+var output;
 
 function initMap() {
   var london = {lat:51.316302085018876,lng:-0.1139043506334474}
@@ -16,7 +17,10 @@ function initMap() {
   map.addListener('click', function(event) {
     marker.setMap(null);
     addMarker(event.latLng);
-    output.innerHTML = null;
+    if (output) {
+      output.innerHTML = null;
+    }
+
   });
   addMarker(london);
 }
